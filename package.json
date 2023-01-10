@@ -1,0 +1,55 @@
+{
+    "name": "gpttoolbox",
+    "displayName": "GPT Toolbox",
+    "description": "Use Chat GPT to automate coding work",
+    "version": "0.0.1",
+    "publisher": "cedricguillemet",
+    "private": true,
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CedricGuillemet/GPT-Toolbox"
+    },
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension",
+    
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.gpttoolbox",
+                "title": "GPT Toolbox"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "GPT Toolbox",
+            "properties": {
+              "gpttoolbox.apiKey": {
+                "type": "string",
+                "default": "",
+                "description": "ChatGPT API key to use with the extension (https://beta.openai.com/account/api-keys)"
+              }
+            }
+          }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "lint": "eslint \"src/**/*.ts\"",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^16.11.7",
+        "@types/vscode": "^1.73.0",
+        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@typescript-eslint/parser": "^5.42.0",
+        "eslint": "^8.26.0",
+        "typescript": "^4.8.4"
+    }
+}
