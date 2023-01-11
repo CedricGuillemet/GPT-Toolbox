@@ -33,7 +33,9 @@ async function runOpenAIQuery(prompt: string, code: string, apiKey: any) {
 	req.write(JSON.stringify({
 		model: 'text-davinci-003',
 		prompt: prompt + code,
-		max_tokens: 2048
+		max_tokens: 2048,
+		temperature: 0.0,
+		top_p: 0.1
 	}));
 	req.end();
 
@@ -53,6 +55,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 		if (!api_key) {
 			throw new Error('API key is required and cannot be empty');
+		}
+
+		let context_infos = "";
+		if (code_context)
+		{
+			context_infos = "The code is about "+code_context+".";
 		}
 
 		// Get the active text editor
@@ -79,7 +87,7 @@ export function activate(context: vscode.ExtensionContext) {
 				//It's in the context of a physics engine in babylon.js. 
 				const p = new Promise<void>(resolve => {
 					runOpenAIQuery(
-						"Generate documentation comment following TSDoc specification with input parameters and return value for the following Typescript code. Also add detailed explanation on why it's useful. Format the generated comment with 80 columns view:\n"
+						`Generate documentation comment following TSDoc specification with input parameters and return value for the following Typescript code. Also add detailed explanation on why it's useful as a comment. ${context_infos} Format the generated comment with 80 columns view:\n`
 						, code
 						, api_key).then((res: any)=> {
 							if (res['error']) {

@@ -4,8 +4,6 @@ Generic interface and queries to use with Chat-GPT.
 Main feature is documenting selected code.
 With more functionalities expected to land in this project.
 
-Known issue: The generated comment is inconsistent between 2 queries. Might be related to the prompt itself or servers load.
-
 ## Running this extension
 
 - Run `npm install` in terminal to install dependencies
