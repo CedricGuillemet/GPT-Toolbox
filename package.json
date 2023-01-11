@@ -23,9 +23,19 @@
         "commands": [
             {
                 "command": "extension.gpttoolbox",
-                "title": "GPT Toolbox"
+                "title": "GPT Toolbox - Document code"
             }
         ],
+        "menus": {
+			"editor/context": [
+				{
+					"command": "extension.gpttoolbox",
+					"when": "editorHasSelection",
+					"group": "navigation@1.31",
+                    "title": "GPT Toolbox - Document code"
+				}
+			]
+		},
         "configuration": {
             "type": "object",
             "title": "GPT Toolbox",
@@ -34,6 +44,11 @@
                 "type": "string",
                 "default": "",
                 "description": "ChatGPT API key to use with the extension (https://beta.openai.com/account/api-keys)"
+              },
+              "gpttoolbox.context": {
+                "type": "string",
+                "default": "",
+                "description": "Selected function context. Like type of the project, library,... hint to help ChatGPT improve the quality of the comment."
               }
             }
           }

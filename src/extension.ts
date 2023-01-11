@@ -48,7 +48,7 @@ async function runOpenAIQuery(prompt: string, code: string, apiKey: any) {
 
 export function activate(context: vscode.ExtensionContext) {
 	const api_key = vscode.workspace.getConfiguration().get('gpttoolbox.apiKey');
-
+	const code_context = vscode.workspace.getConfiguration().get('gpttoolbox.context');
 	const disposable = vscode.commands.registerCommand('extension.gpttoolbox', async function() {
 
 		if (!api_key) {
@@ -79,7 +79,7 @@ export function activate(context: vscode.ExtensionContext) {
 				//It's in the context of a physics engine in babylon.js. 
 				const p = new Promise<void>(resolve => {
 					runOpenAIQuery(
-						"Generate a typescript comment with input parameters and output of this method. The comment should also explain why it's useful in that context with maximum 80 columns:\n"
+						"Generate documentation comment following TSDoc specification with input parameters and return value for the following Typescript code. Also add detailed explanation on why it's useful. Format the generated comment with 80 columns view:\n"
 						, code
 						, api_key).then((res: any)=> {
 							if (res['error']) {
