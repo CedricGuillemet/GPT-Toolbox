@@ -49,6 +49,21 @@
                 "type": "string",
                 "default": "",
                 "description": "Selected function context. Like type of the project, library,... hint to help ChatGPT improve the quality of the comment."
+              },
+              "gpttoolbox.hostname": {
+                "type": "string",
+                "default": "api.openai.com",
+                "description": "The host used to send queries to. BEWARE: The selected code will be sent to that host. Make sure you are allowed to do so with your private code."
+              },
+              "gpttoolbox.port": {
+                "type": "string",
+                "default": "443",
+                "description": "The host port."
+              },
+              "gpttoolbox.path": {
+                "type": "string",
+                "default": "/v1/completions",
+                "description": "The host path."
               }
             }
           }

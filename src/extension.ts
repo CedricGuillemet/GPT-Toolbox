@@ -5,10 +5,19 @@ import { window, ProgressLocation } from 'vscode';
 import * as https from 'https';
 
 async function runOpenAIQuery(prompt: string, code: string, apiKey: any) {
+
+	let hostname = vscode.workspace.getConfiguration().get('gpttoolbox.hostname');
+	let port = vscode.workspace.getConfiguration().get('gpttoolbox.port');
+	let path = vscode.workspace.getConfiguration().get('gpttoolbox.path');
+
+	hostname = hostname ? hostname: 'api.openai.com';
+	port = port ? port : 443;
+	path = path ? path :'/v1/completions';
+
 	const options = {
-		hostname: 'api.openai.com',
-		port: 443,
-		path: '/v1/completions',
+		hostname: hostname,
+		port: port,
+		path: path,
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -18,7 +27,7 @@ async function runOpenAIQuery(prompt: string, code: string, apiKey: any) {
 	let responseData = '';
 	let statusCode = 0;
 
-	const req = https.request(options, (res: any) => {
+	const req = https.request(options as any, (res: any) => {
 		statusCode = res.statusCode;
 
 		res.on('data', (d: any) => {
@@ -69,7 +78,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if (editor) {
 			window.withProgress({
 				location: ProgressLocation.Notification,
-				title: "Computing comment",
+				title: "Generating documentation",
 				cancellable: false
 			}, (progress, token) => {
 
@@ -87,7 +96,7 @@ export function activate(context: vscode.ExtensionContext) {
 				//It's in the context of a physics engine in babylon.js. 
 				const p = new Promise<void>(resolve => {
 					runOpenAIQuery(
-						`Generate documentation comment following TSDoc specification with input parameters and return value for the following Typescript code. Also add detailed explanation on why it's useful as a comment. ${context_infos} Format the generated comment with 80 columns view:\n`
+						`Generate documentation comment following TSDoc specification with input parameters and return value for the following code. Also add detailed explanation in the comment on why this code is useful. ${context_infos} Format the generated comment with 80 columns view:\n`
 						, code
 						, api_key).then((res: any)=> {
 							if (res['error']) {
