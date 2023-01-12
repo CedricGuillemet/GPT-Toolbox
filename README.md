@@ -21,11 +21,11 @@ This extension has been tested mostly on Typescript code. Documentation quality 
 Add your own ChatGPT API Key and an optional hint to help ChatGPT generate the comment.
 Go to VSCode preferences:
 
-![VSCode preferences](Images/pref.png)
+![VSCode preferences](https://github.com/CedricGuillemet/GPT-Toolbox/raw/main/Images/pref.png)
 
 Then fill the API key that you can get from https://beta.openai.com/account/api-keys
 
-![VSCode preferences](Images/settings.png)
+![VSCode preferences](https://github.com/CedricGuillemet/GPT-Toolbox/raw/main/Images/settings.png)
 
 You can now also change the host instead of using OpenAI api. In the case you have a private instance of ChatGPT.
 
@@ -33,8 +33,8 @@ You can now also change the host instead of using OpenAI api. In the case you ha
 
 Select your Typescript code in VScode then right click and select 'GPT Toolbox - Document code'
 
-![VSCode preferences](Images/selectCode.png)
+![VSCode preferences](https://github.com/CedricGuillemet/GPT-Toolbox/raw/main/Images/selectCode.png)
 
 After a few seconds, the documentation comment is there.
 
-![VSCode preferences](Images/resultDoc.png)
+![VSCode preferences](https://github.com/CedricGuillemet/GPT-Toolbox/raw/main/Images/resultDoc.png)
